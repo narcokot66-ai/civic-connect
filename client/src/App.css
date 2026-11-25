@@ -1,0 +1,198 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hazard-pulse {
+  0%, 100% {
+    box-shadow:
+      0 5px 0 #713f12,
+      0 8px 16px rgba(0, 0, 0, 0.45),
+      inset 0 2px 1px rgba(255, 255, 255, 0.55),
+      inset 0 -2px 3px rgba(0, 0, 0, 0.6);
+  }
+  50% {
+    box-shadow:
+      0 5px 0 #713f12,
+      0 10px 22px rgba(250, 204, 21, 0.55),
+      inset 0 2px 2px rgba(255, 255, 255, 0.75),
+      inset 0 -2px 3px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.hazard-3d-row {
+  transform: perspective(600px) rotateX(4deg) translateY(-1px);
+  transform-style: preserve-3d;
+  animation: hazard-pulse 2.2s infinite ease-in-out;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease !important;
+}
+
+.hazard-3d-row:hover {
+  transform: perspective(600px) rotateX(0deg) translateY(-4px) scale(1.02) !important;
+  box-shadow:
+    0 8px 0 #713f12,
+    0 14px 24px rgba(0, 0, 0, 0.6),
+    inset 0 2px 2px rgba(255, 255, 255, 0.7) !important;
+}
+
+.hazard-3d-row:active {
+  transform: perspective(600px) rotateX(2deg) translateY(2px) scale(0.99) !important;
+  box-shadow:
+    0 2px 0 #713f12,
+    0 4px 8px rgba(0, 0, 0, 0.4) !important;
+}
+
+@media (max-width: 768px) {
+  html,
+  body,
+  #root,
+  .App {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .App *,
+  .App *::before,
+  .App *::after {
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Keep top header items from clipping off the right edge */
+  header,
+  nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    padding: 10px 12px !important;
+    width: 100% !important;
+  }
+
+  /* Stack side-by-side form rows and split panels vertically on mobile */
+  .form-row,
+  .form-grid,
+  .complaint-form-grid,
+  .dashboard-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  /* Keep complaint cards and panels within screen bounds */
+  .App [class*="card"],
+  .App [class*="form"],
+  .App [class*="panel"],
+  .App [class*="container"] {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: hidden;
+  }
+
+  .App input,
+  .App select,
+  .App textarea,
+  .App button {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Keep filter/region buttons compact inside rows */
+  .App [class*="filter"] button,
+  .App [class*="region"] button,
+  .App [class*="tab"] button {
+    width: auto !important;
+  }
+
+  /* Stack Citizen 2-column grids and prevent right-edge clipping */
+  .citizen-2col-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  .citizen-2col-grid > div {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .citizen-2col-grid select,
+  .citizen-2col-grid input {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Stack GPS input and Auto GPS button vertically on mobile */
+  .citizen-gps-row {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .citizen-gps-row input,
+  .citizen-gps-row button {
+    width: 100% !important;
+    min-height: 42px;
+  }
+
+  /* Prevent headings and submit buttons from clipping on the right edge */
+  .App h1,
+  .App h2,
+  .App h3,
+  .App button[type="submit"] {
+    max-width: 100% !important;
+    word-break: break-word;
+  }
+
+  /* Keep GPS controls and Leaflet map visible with usable height on mobile */
+  [class*="gps"] {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .leaflet-container,
+  [class*="map"] {
+    display: block !important;
+    width: 100% !important;
+    min-height: 220px !important;
+    height: 220px !important;
+  }
+}
